@@ -53,4 +53,12 @@ CREATE DATABASE main;
 GRANT ALL PRIVILEGES ON main.* TO 'main'@'localhost';
 EOF
 
+sudo systemctl start mysql
+
 sudo mysql -u root < /tmp/init.sql
+
+sudo systemctl stop mysql
+
+sudo mv /etc/mysql/temp.cnf /tmp/
+
+sudo systemctl start mysql
