@@ -40,6 +40,7 @@ sudo service apache2 restart
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Setting Up mysql
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+PWORD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16 ; echo '')
 sudo systemctl stop mysql
 sudo cat << EOF  > /etc/mysql/temp.cnf
 [mysqld]
@@ -48,7 +49,7 @@ skip-networking
 EOF
 
 cat << EOF > /tmp/init.sql
-CREATE USER 'main'@'localhost';
+CREATE USER 'main'@'localhost' IDENTIFIED BY '$PWORD';
 CREATE DATABASE main;
 GRANT ALL PRIVILEGES ON main.* TO 'main'@'localhost';
 EOF
@@ -89,7 +90,7 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_DATABASE=main
 DB_USERNAME='main'
-DB_PASSWORD='credential'
+DB_PASSWORD='$PWORD'
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
