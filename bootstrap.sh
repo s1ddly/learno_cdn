@@ -69,7 +69,11 @@ sudo systemctl start mysql
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Setting Up project
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
+sudo mkdir /opt/learnai/
+cd /opt/learnai/
+curl -k https://sidshardanand.com/learno_cdn/latest.zip > /opt/learnai/learnai.zip
+unzip learnai.zip
+cd Learnai-main
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Initialising website
