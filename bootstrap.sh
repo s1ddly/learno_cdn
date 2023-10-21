@@ -1,6 +1,8 @@
 #!/bin/bash
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Bootstrap script for the LearnAi website
+# This script is available at https://sidshardanand.com/learno_cdn/bootstrap.sh
+# Author: Sid Shardanand
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
