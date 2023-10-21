@@ -7,28 +7,29 @@
 # Installing/enabling ssh
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 sudo apt update
-sudo apt install openssh-server
+sudo apt -y install openssh-server
 sudo systemctl enable ssh
 sudo ufw allow ssh
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Installing other linux dependencies
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-sudo apt install php8.1
-sudo apt install apache2
-sudo apt install mysql-server
-sudo apt install php-cli
-sudo apt install php-xml
-sudo apt install php-common
-sudo apt install php-curl
-sudo apt install php8.1-cli
-sudo apt install php8.1-common
-sudo apt install php8.1-curl
-sudo apt install php8.1-mysql
-sudo apt install php8.1-opcache
-sudo apt install php8.1-readline
-sudo apt install php8.1-xml
-sudo apt install curl
+sudo apt -y install php8.1
+sudo apt -y install apache2
+sudo apt -y install mysql-server
+sudo apt -y install php-cli
+sudo apt -y install php-xml
+sudo apt -y install php-common
+sudo apt -y install php-curl
+sudo apt -y install php8.1-cli
+sudo apt -y install php8.1-common
+sudo apt -y install php8.1-curl
+sudo apt -y install php8.1-mysql
+sudo apt -y install php8.1-opcache
+sudo apt -y install php8.1-readline
+sudo apt -y install php8.1-xml
+sudo apt -y install curl
+sudo apt -y install vim
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Installing Composer
@@ -42,13 +43,16 @@ sudo service apache2 restart
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 PWORD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16 ; echo '')
 sudo systemctl stop mysql
-sudo cat << EOF  > /etc/mysql/temp.cnf
+cat << EOF  > /tmp/temp.cnf
 [mysqld]
 skip-grant-tables
 skip-networking
 EOF
 
+sudo cp temp.cnf /etc/mysql/mysql.conf.d/
+
 cat << EOF > /tmp/init.sql
+FLUSH PRIVILEGES;
 CREATE USER 'main'@'localhost' IDENTIFIED BY '$PWORD';
 CREATE DATABASE main;
 GRANT ALL PRIVILEGES ON main.* TO 'main'@'localhost';
@@ -56,20 +60,23 @@ EOF
 
 sudo systemctl start mysql
 
+sleep 10
+
 sudo mysql -u root < /tmp/init.sql
 
 sudo systemctl stop mysql
 
-sudo mv /etc/mysql/temp.cnf /tmp/
+sudo mv /etc/mysql/mysql.conf.d/temp.cnf /tmp/temp.cnf.bkp
 
 sudo systemctl start mysql
 
-
+sleep 10
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 # Setting Up project
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 sudo mkdir /opt/learnai/
+sudo chmod 777 -R /opt/learnai/
 cd /opt/learnai/
 curl -k https://sidshardanand.com/learno_cdn/latest.zip > /opt/learnai/learnai.zip
 unzip learnai.zip
@@ -139,7 +146,10 @@ VITE_PUSHER_PORT="${PUSHER_PORT}"
 VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 EOF
+
 composer install 
 php artisan key:generate
 php artisan migrate
-php artisan make:seeder UserSeeder
+php artisan db:seed --class=UserSeeder
+
+nohup php artisan serve --port=8080 >> /tmp/serverlog.txt  2>&1 &
