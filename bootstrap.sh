@@ -152,4 +152,14 @@ php artisan key:generate
 php artisan migrate
 php artisan db:seed --class=UserSeeder
 
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+# Starting Server
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
 nohup php artisan serve --port=8080 >> /tmp/serverlog.txt  2>&1 &
+
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+# To shutdown the website, run the below
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+#sudo kill -9 $(sudo lsof -t -i:8080)
