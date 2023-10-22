@@ -3,6 +3,10 @@
 # Bootstrap script for the LearnAi website
 # This script is available at https://sidshardanand.com/learno_cdn/bootstrap.sh
 # Author: Sid Shardanand
+# bootstrap commands:
+# wget https://sidshardanand.com/learno_cdn/bootstrap.sh
+# chmod 777 bootstrap.sh
+# bash bootstrap.sh
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -51,7 +55,7 @@ skip-grant-tables
 skip-networking
 EOF
 
-sudo cp temp.cnf /etc/mysql/mysql.conf.d/
+sudo cp /tmp/temp.cnf /etc/mysql/mysql.conf.d/
 
 cat << EOF > /tmp/init.sql
 FLUSH PRIVILEGES;
