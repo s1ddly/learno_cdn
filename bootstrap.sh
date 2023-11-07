@@ -34,6 +34,7 @@ sudo apt -y install php8.1-mysql
 sudo apt -y install php8.1-opcache
 sudo apt -y install php8.1-readline
 sudo apt -y install php8.1-xml
+sudo apt -y install php8.1-zip
 sudo apt -y install curl
 sudo apt -y install vim
 
