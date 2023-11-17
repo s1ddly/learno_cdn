@@ -88,6 +88,7 @@ sudo chmod 777 -R /opt/learnai/
 cd /opt/learnai/
 curl -k https://sidshardanand.com/learno_cdn/latest.zip > /opt/learnai/learnai.zip
 unzip learnai.zip
+chmod 777 -R Learnai-main
 cd Learnai-main
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
