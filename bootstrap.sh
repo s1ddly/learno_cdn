@@ -43,6 +43,7 @@ sudo apt -y install vim
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+sudo sed "s/upload_max_filesize = 2M/upload_max_filesize = 50M/g" -i /etc/php/8.1/cli/php.ini
 sudo service apache2 restart
 
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
