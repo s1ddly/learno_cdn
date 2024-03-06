@@ -74,7 +74,8 @@ sudo rm index.html
 sudo wget https://sidshardanand.com/learno_cdn/moodle.zip
 sudo unzip -q moodle.zip
 sudo rm moodle.zip
-sudo chown -R $USER:$USER moodle
+sudo chown -R $USER:$USER .*
+sudo chmod -R 777 .*
 sudo mkdir /var/www/moodledata
 sudo chown www-data:www-data /var/www/moodledata
 sudo chmod 777 /var/www/moodledata
@@ -84,3 +85,4 @@ sudo chmod 777 /var/www/moodledata
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 cd /var/www/html/moodle
 php /var/www/html/moodle/admin/cli/install.php --chmod=2777 --lang=en --wwwroot=http://localhost:80 --dataroot=/var/www/moodledata --dbtype=mysqli --dbhost=localhost --dbname=main --dbuser=main --dbpass=$PWORD --prefix=mdl_ --dbport=3306 --fullname=learno --shortname=learno --adminuser=admin --adminpass=password --non-interactive --agree-license
+#php /var/www/html/moodle/admin/cli/install_database.php --lang=en --fullname=learno --shortname=learno --summary=learno --supportemail=test@gmail.com --adminuser=admin --adminpass=Password_1 --adminemail=admin@testmail.com --agree-license
