@@ -87,4 +87,5 @@ sudo chmod 777 /var/www/moodledata
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 cd /var/www/html/
 php /var/www/html/admin/cli/install.php --chmod=2777 --lang=en --wwwroot=http://localhost:80 --dataroot=/var/www/moodledata --dbtype=mysqli --dbhost=localhost --dbname=main --dbuser=main --dbpass=$PWORD --prefix=mdl_ --dbport=3306 --fullname=learno --shortname=learno --adminuser=admin --adminpass=password --non-interactive --agree-license
+sudo chmod 777 /var/www/html/config.php
 #php /var/www/html/moodle/admin/cli/install_database.php --lang=en --fullname=learno --shortname=learno --summary=learno --supportemail=test@gmail.com --adminuser=admin --adminpass=Password_1 --adminemail=admin@testmail.com --agree-license
