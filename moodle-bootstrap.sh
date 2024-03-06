@@ -71,10 +71,9 @@ sudo systemctl restart apache2
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 cd /var/www/html/
 sudo rm index.html
-sudo wget https://github.com/s1ddly/moodle/archive/refs/heads/main.zip
-sudo unzip -q main.zip
-sudo mv moodle-main/ moodle
-sudo rm main.zip
+sudo wget https://sidshardanand.com/learno_cdn/moodle.zip
+sudo unzip -q moodle.zip
+sudo rm moodle.zip
 sudo chown -R $USER:$USER moodle
 sudo mkdir /var/www/moodledata
 sudo chown www-data:www-data /var/www/moodledata
